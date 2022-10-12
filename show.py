@@ -1,4 +1,3 @@
-import asyncio
 from font import FontSize
 from tkinter import (
     Tk, 
@@ -7,6 +6,13 @@ from tkinter import (
 )
 
 class App(Tk):
+    def __init__(self, *args, **kwargs) -> None:
+        super().__init__(*args, **kwargs)
+
+    def start(self) -> None:
+        self.mainloop()
+
+class ImageApp(App):
     def __init__(self, *args, **kwargs) -> None:
         super().__init__(*args, **kwargs)
 
@@ -47,5 +53,7 @@ class App(Tk):
         self.label.configure(font=("Arial", self.fontsize.size))
         self.label.pack()
     
-    def start(self) -> None:
-        self.mainloop()
+    def set_label_resolution(self, nres: tuple[int ,int]) -> None:
+        self.label.configure(
+            width=nres[0] , height=nres[1]
+        )
